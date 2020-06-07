@@ -14,11 +14,18 @@
   </head>
   <body>
   	<div class="container">
-  	
-  		${message }
+  		<div class="searchArea">
+  			<input type="text" id="searchBox">
+  			<button onclick="search()">Search</button>
+  			<div class="result">
+  				
+  			</div>
+  		</div>
+
   		
   	</div>
 
+	<script src="<c:url value="/resources/js/jquery-3.5.1.min.js" />"></script>
     <script src="<c:url value="/resources/js/weather.js" />"></script>
   </body>
 </html>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class WeatherController {
 	
+	
 	@RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
 	public String list(ModelMap model) {
 		model.addAttribute("message", "This is a boilerplate project");
