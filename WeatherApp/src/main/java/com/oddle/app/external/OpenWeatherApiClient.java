@@ -35,6 +35,8 @@ public class OpenWeatherApiClient {
   public WeatherCity searchByCity(String city) throws JsonMappingException, IOException {
 	  if ( StringUtils.isEmpty(city) ) return null;
 	  
+	  city = city.trim();
+	  
 	  String url = String.format(WEATHER_MAP_URL, city, appId);
 	 
 	  logger.info("Getting data from OpenWeather for city: " + city);

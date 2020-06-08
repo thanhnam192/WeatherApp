@@ -1,6 +1,7 @@
 package com.oddle.app.controller.api;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class OpenWeatherApiContoller {
 				return ResponseEntity.status(HttpStatus.OK).body("We have no information for " + city + " city");
 			}
 			WeatherLog log = this.openWeatherApiLogic.writeLog(weather);
-			WeatherDto dto = this.weatherLogToDtoMapper.map(log);
+			WeatherDto dto = this.weatherLogToDtoMapper.toDto(log);
 			return new  ResponseEntity(dto, HttpStatus.OK);
 			
 		} catch (JsonMappingException e) {
@@ -51,5 +52,20 @@ public class OpenWeatherApiContoller {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error IO");
 		}
 		 
+	}
+	
+	@GetMapping("/showall")
+	public ResponseEntity<?> getAllWeatherCity(@RequestParam(name="city") String city){
+		try {
+			List<WeatherDto> dtos =  this.openWeatherApiLogic.getAllWeatherCity(city);
+			return new  ResponseEntity(dtos, HttpStatus.OK); 
+			
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while mapping data");
+		} catch (IOException e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error IO");
+		}
 	}
 }

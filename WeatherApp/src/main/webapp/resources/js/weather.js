@@ -43,5 +43,32 @@ function removeLog(id){
 
 function showMoreWeather(){
 	showMode = true;
-	alert(123123);
+	
+	$.get( "/weatherapp/api/weather/showall?city="+validCity, function( weathers ) {
+		console.log(weathers);
+		if( typeof weathers == 'object' ) {
+			var row = '';
+			for(var i = 0; i < weathers.length; i++){
+				var data = weathers[i];
+				row += '<tr>';
+				row += '<td><img src="'+ data.weatherIcon + '" ></td>';
+				row += '<td>' +  data.city + '</td>';
+				row += '<td>' + data.date + '</td>';
+				row += '<td>' + data.temp + '</td>';
+				row += '<td>' + data.windSpeed + '</td>';
+				row += '<td>' + data.humidity + '</td>';
+				row += '<td>' + data.pressure + '</td>';
+				row += '<td><button onClick="removeLog(' + data.id +')" class="btn btn-warning" >Delete</button></td>';
+				row += '</tr>';
+			}
+			
+			
+			
+			$("#weatherResultTb tbody").html(row);
+
+		} else  {
+			$("#weatherResultTb tbody").html('<tr><td colspan="8"><strong>' + data + '</strong></td></tr>');
+		}
+	});
+	
 }

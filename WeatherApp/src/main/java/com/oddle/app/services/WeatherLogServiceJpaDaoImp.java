@@ -17,8 +17,8 @@ public class WeatherLogServiceJpaDaoImp implements WeatherLogService{
 	private HibernateTemplate hibernateTemplate;
 	
 	@Override
-	public List<?> listAll(String city) {
-		List<WeatherLog> log = (List<WeatherLog>) this.hibernateTemplate.find("from WeatherLog where city=?", city);
+	public List<WeatherLog> listAll(String city) {
+		List<WeatherLog> log = (List<WeatherLog>) this.hibernateTemplate.find("from WeatherLog w where w.city=? order by w.id desc", city);
 		return log;
 	}
 
