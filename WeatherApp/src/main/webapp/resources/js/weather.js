@@ -18,7 +18,7 @@ function search(){
 	var sprinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Searching';
 	$("#searchBtn").html(sprinner);
 	$("#csvBtn").hide();
-	$.get( "/weatherapp/api/weather?city="+city, function( data ) {
+	$.get( path + "/api/weather?city="+city, function( data ) {
 		$("#searchBtn").html('Search');
 		console.log(data);
 		if( typeof data == 'object' ) {
@@ -53,7 +53,7 @@ function confirmDelete(id){
 
 function removeLog(){
 	$.ajax({
-	    url: '/weatherapp/api/weather/' + currentWeatherId,
+	    url: path + '/api/weather/' + currentWeatherId,
 	    type: 'DELETE',
 	    success: function(result) {
 	    	
@@ -76,7 +76,7 @@ function showMoreWeather(){
 	var sprinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading';
 	$("#showMoreBtn").html(sprinner);
 
-	$.get( "/weatherapp/api/weather/showall?city="+validCity, function( weathers ) {
+	$.get( path + "/api/weather/showall?city="+validCity, function( weathers ) {
 		$("#showMoreBtn").html('Show More');
 		console.log(weathers);
 		if( typeof weathers == 'object' ) {
@@ -101,7 +101,7 @@ function showMoreWeather(){
 			console.log(allWeather);
 			
 			$("#weatherResultTb tbody").html(row);
-			$("#csvBtn").attr("href", "/weatherapp/api/weather/downloadCSV?city=" + validCity);
+			$("#csvBtn").attr("href", path + "/api/weather/downloadCSV?city=" + validCity);
 			$("#csvBtn").show();
 
 		} else  {
