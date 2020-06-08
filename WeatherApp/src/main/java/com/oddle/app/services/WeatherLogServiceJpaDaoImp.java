@@ -24,8 +24,12 @@ public class WeatherLogServiceJpaDaoImp implements WeatherLogService{
 
 	@Override
 	public WeatherLog getById(Integer id) {
-		
-		return this.hibernateTemplate.get(WeatherLog.class, id);
+		try {
+			return this.hibernateTemplate.get(WeatherLog.class, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
@@ -36,7 +40,11 @@ public class WeatherLogServiceJpaDaoImp implements WeatherLogService{
 
 	@Override
 	public void delete(Integer id) {
-		this.hibernateTemplate.delete(this.getById(id));
+		WeatherLog log = this.getById(id);
+		if( log != null ) {
+			this.hibernateTemplate.delete(log);
+		}
+		
 	}
 
 }

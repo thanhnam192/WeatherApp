@@ -54,4 +54,8 @@ public class OpenWeatherApiLogic {
 		return dtos;
 	}
 	
+	public void deleteWeatherLog(int id) {
+		this.weatherLogService.delete(id);;
+	}
+	
 }
