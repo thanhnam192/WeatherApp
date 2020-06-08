@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	console.log('ready to serve...');
 	$("#showMoreBtn").hide();
+	/*$("#csvBtn").hide();*/
 })
 
 var validCity = '';
@@ -97,6 +98,8 @@ function showMoreWeather(){
 			console.log(allWeather);
 			
 			$("#weatherResultTb tbody").html(row);
+			$("#csvBtn").attr("href", "/weatherapp/api/weather/downloadCSV?city=" + validCity);
+			$("#csvBtn").show();
 
 		} else  {
 			$("#weatherResultTb tbody").html('<tr><td colspan="8"><strong>' + data + '</strong></td></tr>');

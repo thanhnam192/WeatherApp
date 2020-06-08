@@ -5,9 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -56,6 +61,24 @@ public class OpenWeatherApiLogic {
 	
 	public void deleteWeatherLog(int id) {
 		this.weatherLogService.delete(id);;
+	}
+	
+	public void generateCsvFile(String city, HttpServletResponse response) throws JsonParseException, JsonMappingException, IOException {
+		List<WeatherDto> dtos =  getAllWeatherCity(city);
+		
+	     // uses the Super CSV API to generate CSV data from the model data
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(),
+                CsvPreference.STANDARD_PREFERENCE);
+ 
+        String[] header = { "id", "city", "country", "date", "temp", "windSpeed", "humidity","pressure","weatherIcon" };
+ 
+        csvWriter.writeHeader(header);
+ 
+        for (WeatherDto dto : dtos) {
+            csvWriter.write(dto, header);
+        }
+ 
+        csvWriter.close();
 	}
 	
 }

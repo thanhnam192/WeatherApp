@@ -30,6 +30,12 @@
 			  	<button type="button" onclick="search()" class="btn btn-primary mb-2" id="searchBtn">Search</button>
 			</form>	
   		</div>
+  		
+  		<div class="row mt-1 mb-1">
+			<button id="showMoreBtn" class="btn btn-secondary" onclick="showMoreWeather()">Show More</button>
+		<!-- 	<a href="#"  target="_blank" class="btn btn-primary" id="csvBtn">Down load csv</a> -->
+		</div>
+  		
 	
 		<div class="result row">
   				<table id="weatherResultTb" class="table table-striped">
@@ -52,10 +58,7 @@
   				
 		</div>
 		
-		<div class="row mt-1">
-			<button id="showMoreBtn" class="btn btn-secondary" onclick="showMoreWeather()">Show More</button>
-		</div>
-
+	
   	</div>
   	
   	<div class="modal" tabindex="-1" role="dialog" id="confirmModal">
@@ -80,8 +83,9 @@
   	
   	
 	<script src="<c:url value="/resources/js/jquery-3.5.1.min.js" />"></script>
+	<script src="<c:url value="/resources/js/weather.js" />"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="<c:url value="/resources/js/weather.js" />"></script>
+    
   </body>
 </html>
