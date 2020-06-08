@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Weather App</title>
- 
+ 	 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
   </head>
   <body>
   	<nav class="navbar navbar-light bg-light">
@@ -88,7 +88,7 @@
 	  </div>
 	</div>
   	
-  	 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+  	
   	<script>
 		var path = '<c:out value="${path}"/>';
 		console.log(path);
