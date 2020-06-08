@@ -13,9 +13,11 @@ function search(){
 	showMode = false;
 	allWeather = [];
 	var city = $("#searchBox").val().trim();
+	
 	if( city == '' ) return;
 	var sprinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Searching';
 	$("#searchBtn").html(sprinner);
+	$("#csvBtn").hide();
 	$.get( "/weatherapp/api/weather?city="+city, function( data ) {
 		$("#searchBtn").html('Search');
 		console.log(data);
@@ -33,6 +35,7 @@ function search(){
 			
 			$("#weatherResultTb tbody").html(row);
 			validCity = data.city;
+			
 
 			$("#showMoreBtn").show();
 		} else  {
