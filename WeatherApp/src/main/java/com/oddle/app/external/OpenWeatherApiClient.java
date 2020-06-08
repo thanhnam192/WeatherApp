@@ -38,7 +38,15 @@ public class OpenWeatherApiClient {
 	  String url = String.format(WEATHER_MAP_URL, city, appId);
 	 
 	  logger.info("Getting data from OpenWeather for city: " + city);
-	  ResponseEntity<String> response= restTemplate.getForEntity(url ,String.class);
+	  ResponseEntity<String> response;
+	  try {
+		  response = restTemplate.getForEntity(url ,String.class);
+	  } catch (Exception e) {
+		  logger.warn("Error happend when get data from OpenWeather");
+		  e.printStackTrace();
+		  return null;
+	}
+	  
 	  logger.info("Get data from OpenWeather Success");
 	  logger.info(response.getBody().toString());
 

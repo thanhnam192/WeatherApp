@@ -1,25 +1,36 @@
 package com.oddle.app.model.external;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Wind {
-	private int speed;
-	private int deg;
-	
-	public int getSpeed() {
+	private float speed;
+	private float deg;
+	private float gust;
+	public float getSpeed() {
 		return speed;
 	}
-	public void setSpeed(int speed) {
+	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
-	public int getDeg() {
+	public float getDeg() {
 		return deg;
 	}
-	public void setDeg(int deg) {
+	public void setDeg(float deg) {
 		this.deg = deg;
+	}
+	public float getGust() {
+		return gust;
+	}
+	public void setGust(float gust) {
+		this.gust = gust;
 	}
 	@Override
 	public String toString() {
-		return "Wind [speed=" + speed + ", deg=" + deg + "]";
+		return "Wind [speed=" + speed + ", deg=" + deg + ", gust=" + gust + "]";
 	}
+	
+
 
 	
 }
