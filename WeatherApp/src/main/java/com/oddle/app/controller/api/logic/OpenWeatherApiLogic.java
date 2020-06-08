@@ -17,8 +17,7 @@ public class OpenWeatherApiLogic {
 	@Autowired
 	public ObjectMapper mapper;
 	
-	public void writeLog(WeatherCity weatherCity) throws JsonProcessingException {
-		if( weatherCity == null ) return;
+	public WeatherLog writeLog(WeatherCity weatherCity) throws JsonProcessingException {
 		WeatherLog log = new WeatherLog();
 		log.setCity(weatherCity.getName());
 		log.setCountry(weatherCity.getSys().getCountry());
@@ -26,6 +25,7 @@ public class OpenWeatherApiLogic {
 		log.setContent(mapper.writeValueAsString(weatherCity));
 		log.setTimetamps(weatherCity.getDt());
 		this.weatherLogService.saveOrUpdate(log);
+		return log;
 	}
 	
 }

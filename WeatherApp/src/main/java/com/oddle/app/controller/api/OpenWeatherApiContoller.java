@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.oddle.app.controller.api.logic.OpenWeatherApiLogic;
+import com.oddle.app.dto.WeatherDto;
 import com.oddle.app.external.OpenWeatherApiClient;
+import com.oddle.app.mapper.WeatherLogToDtoMapper;
+import com.oddle.app.model.WeatherLog;
 import com.oddle.app.model.external.WeatherCity;
 
 @RestController
@@ -20,19 +23,25 @@ public class OpenWeatherApiContoller {
 
 	private OpenWeatherApiClient openWeatherApiClient;
 	private OpenWeatherApiLogic openWeatherApiLogic;
+	private WeatherLogToDtoMapper weatherLogToDtoMapper;
 	
 	@Autowired
-	public OpenWeatherApiContoller(OpenWeatherApiClient openWeatherApiClient, OpenWeatherApiLogic openWeatherApiLogic) {
+	public OpenWeatherApiContoller(OpenWeatherApiClient openWeatherApiClient, OpenWeatherApiLogic openWeatherApiLogic, WeatherLogToDtoMapper weatherLogToDtoMapper) {
 		this.openWeatherApiClient = openWeatherApiClient;
 		this.openWeatherApiLogic = openWeatherApiLogic;
+		this.weatherLogToDtoMapper = weatherLogToDtoMapper;
 	}
 	
 	@GetMapping
 	public ResponseEntity<?> getWeather(@RequestParam(name="city") String city)  {
 		 try {
 			WeatherCity weather = openWeatherApiClient.searchByCity(city);
-			this.openWeatherApiLogic.writeLog(weather);
-			return new  ResponseEntity(weather, HttpStatus.OK);
+			if( weather == null ) {
+				return ResponseEntity.status(HttpStatus.OK).body("We have no information for " + city + " city");
+			}
+			WeatherLog log = this.openWeatherApiLogic.writeLog(weather);
+			WeatherDto dto = this.weatherLogToDtoMapper.map(log);
+			return new  ResponseEntity(dto, HttpStatus.OK);
 			
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
