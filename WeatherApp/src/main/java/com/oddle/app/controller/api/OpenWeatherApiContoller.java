@@ -84,16 +84,16 @@ public class OpenWeatherApiContoller {
 		this.openWeatherApiLogic.deleteWeatherLog(id);
 	}
 	
-//	@GetMapping("/downloadCSV")
-//	public void downloadCSV(@RequestParam(name = "city") String city, HttpServletResponse response) throws IOException {
-//		String csvFileName = "logs.csv";
-//		 
-//        response.setContentType("text/csv");
-//        String headerKey = "Content-Disposition";
-//        String headerValue = String.format("attachment; filename=\"%s\"", csvFileName);
-//        response.setHeader(headerKey, headerValue);
-//        
-//        this.openWeatherApiLogic.generateCsvFile(city, response);
-//
-//	}
+	@GetMapping("/downloadCSV")
+	public void downloadCSV(@RequestParam(name = "city") String city, HttpServletResponse response) throws IOException {
+		String csvFileName = "logs.csv";
+		 
+        response.setContentType("text/csv");
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"", csvFileName);
+        response.setHeader(headerKey, headerValue);
+        
+        this.openWeatherApiLogic.generateCsvFile(city, response);
+
+	}
 }

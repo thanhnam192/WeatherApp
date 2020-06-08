@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	console.log('ready to serve...');
 	$("#showMoreBtn").hide();
-	/*$("#csvBtn").hide();*/
+	$("#csvBtn").hide();
 })
 
 var validCity = '';

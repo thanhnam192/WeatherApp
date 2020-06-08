@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Weather App</title>
 
   </head>
@@ -32,8 +33,13 @@
   		</div>
   		
   		<div class="row mt-1 mb-1">
-			<button id="showMoreBtn" class="btn btn-secondary" onclick="showMoreWeather()">Show More</button>
-		<!-- 	<a href="#"  target="_blank" class="btn btn-primary" id="csvBtn">Down load csv</a> -->
+			<div class="col-sm">
+				<button id="showMoreBtn" class="btn btn-secondary float-left" onclick="showMoreWeather()">Show More</button>
+			</div>
+			<div class="col-sm">
+				<a href="#"  target="_blank" class="btn btn-primary float-right" id="csvBtn"><i class="fa fa-download"></i></a>
+			</div>
+			
 		</div>
   		
 	
