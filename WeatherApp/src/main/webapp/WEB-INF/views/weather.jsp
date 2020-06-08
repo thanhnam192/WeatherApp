@@ -21,7 +21,7 @@
 	  </a>
 	</nav>
 	<br/>
-	${path}
+
   	<div class="container">
   		<div class="row">
 			<form class="form-inline">
