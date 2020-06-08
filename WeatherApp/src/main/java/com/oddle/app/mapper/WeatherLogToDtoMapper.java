@@ -34,6 +34,7 @@ public class WeatherLogToDtoMapper {
 		 dto.setWindSpeed(weatherCity.getWind().getSpeed());
 		 dto.setHumidity(weatherCity.getMain().getHumidity());
 		 dto.setPressure(weatherCity.getMain().getPressure());
+		 dto.setWeatherIcon("http://openweathermap.org/img/w/"+ weatherCity.getWeather().get(0).getIcon() + ".png");
 		 
 		 return dto;
 	}

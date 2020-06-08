@@ -9,6 +9,8 @@ public class WeatherDto {
 	private float windSpeed;
 	private int humidity;
 	private int pressure;
+	private String weatherIcon;
+	
 	public int getId() {
 		return id;
 	}
@@ -58,12 +60,17 @@ public class WeatherDto {
 	public void setPressure(int pressure) {
 		this.pressure = pressure;
 	}
+	public String getWeatherIcon() {
+		return weatherIcon;
+	}
+	public void setWeatherIcon(String weatherIcon) {
+		this.weatherIcon = weatherIcon;
+	}
 	@Override
 	public String toString() {
-		return "WeatherDto [id=" + id + ", city=" + city + ", country=" + country + ", date =" + date
-				+ ", temp=" + temp + ", windSpeed=" + windSpeed + ", humidity=" + humidity + ", pressure=" + pressure
-				+ "]";
+		return "WeatherDto [id=" + id + ", city=" + city + ", country=" + country + ", date=" + date + ", temp=" + temp
+				+ ", windSpeed=" + windSpeed + ", humidity=" + humidity + ", pressure=" + pressure + ", weatherIcon="
+				+ weatherIcon + "]";
 	}
-	
 	
 }
