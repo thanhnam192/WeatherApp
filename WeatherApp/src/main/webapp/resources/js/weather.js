@@ -27,8 +27,6 @@ function search(){
 			
 			$("#showMoreBtn").show();
 		} else  {
-			
-			console.log('asdasdas');
 			$("#resultArea").html('<tr><td colspan="8"><strong>' + data + '</strong></td></tr>');
 		}
 	});
