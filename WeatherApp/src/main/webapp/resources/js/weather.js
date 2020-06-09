@@ -22,26 +22,12 @@ function search(){
 		$("#searchBtn").html('Search');
 		console.log(data);
 		if( typeof data == 'object' ) {
-			var row = '<tr>';
-			row += '<td><img src="'+ data.weatherIcon + '" ></td>';
-			row += '<td>' +  data.city + '</td>';
-			row += '<td>' + data.date + '</td>';
-			row += '<td>' + data.temp + '</td>';
-			row += '<td>' + data.windSpeed + '</td>';
-			row += '<td>' + data.humidity + '</td>';
-			row += '<td>' + data.pressure + '</td>';
-			row += '<td><button onclick="confirmDelete(' + data.id +')" class="btn btn-warning" data-toggle="modal" data-target="#confirmModal" >Delete</button></td>';
-			row += '</tr>';
-			
-			$("#weatherResultTb tbody").html(row);
+			$("#resultArea").html(createCard(data));
 			validCity = data.city;
 			
-
 			$("#showMoreBtn").show();
 		} else  {
-			
-			
-			$("#weatherResultTb tbody").html('<tr><td colspan="8"><strong>' + data + '</strong></td></tr>');
+			$("#resultArea").html('<tr><td colspan="8"><strong>' + data + '</strong></td></tr>');
 		}
 	});
 	
@@ -52,19 +38,24 @@ function confirmDelete(id){
 }
 
 function removeLog(){
+	waitingDialog.show('Deleting...', {dialogSize: 'sm'});
 	$.ajax({
 	    url: path + '/api/weather/' + currentWeatherId,
 	    type: 'DELETE',
 	    success: function(result) {
+	    	waitingDialog.hide();
 	    	
 	    	if(showMode){
 	    		removeWeatherLogFromLocal(currentWeatherId);
 	    		loadWeatherLogsFromLocal();
 	    	} else {
-	    		$("#weatherResultTb tbody").html('');
+	    		$("#resultArea").html('');
 	    	}
 	    	
 	    	currentWeatherId = 0;
+	    },
+	    error: function(){
+	    	waitingDialog.hide();
 	    }
 	});
 }
@@ -80,32 +71,22 @@ function showMoreWeather(){
 		$("#showMoreBtn").html('Show More');
 		console.log(weathers);
 		if( typeof weathers == 'object' ) {
-			var row = '';
+			var card = '';
 			for(var i = 0; i < weathers.length; i++){
 				
 				var data = weathers[i];
-				row += '<tr>';
-				row += '<td><img src="'+ data.weatherIcon + '" alt="img" ></td>';
-				row += '<td>' +  data.city + '</td>';
-				row += '<td>' + data.date + '</td>';
-				row += '<td>' + data.temp + '</td>';
-				row += '<td>' + data.windSpeed + '</td>';
-				row += '<td>' + data.humidity + '</td>';
-				row += '<td>' + data.pressure + '</td>';
-				row += '<td><button onclick="confirmDelete(' + data.id +')" class="btn btn-warning" data-toggle="modal" data-target="#confirmModal" >Delete</button></td>';
-				row += '</tr>';
-				
+				card += createCard(data);
 				allWeather.push(data);
 				
 			}
 			console.log(allWeather);
 			
-			$("#weatherResultTb tbody").html(row);
+			$("#resultArea").html(card);
 			$("#csvBtn").attr("href", path + "/api/weather/downloadCSV?city=" + validCity);
 			$("#csvBtn").show();
 
 		} else  {
-			$("#weatherResultTb tbody").html('<tr><td colspan="8"><strong>' + data + '</strong></td></tr>');
+			$("#resultArea").html('<tr><td colspan="8"><strong>' + data + '</strong></td></tr>');
 		}
 	});
 	
@@ -119,25 +100,44 @@ function removeWeatherLogFromLocal(id){
 }
 
 function loadWeatherLogsFromLocal(){
-	if( allWeather.length == 0 ) return;
+	if( allWeather.length == 0 ) {
+		$("#resultArea").html('');
+		$("#csvBtn").hide();
+		$("#showMoreBtn").hide();
+		return;
+	}
 	
 	console.log('load from local');
 	console.log(allWeather);
-	var row = '';
+	var card = '';
 	for(var i = 0; i < allWeather.length; i++){
 		var data = allWeather[i];
-		row += '<tr>';
-		row += '<td><img src="'+ data.weatherIcon + '" alt="img" ></td>';
-		row += '<td>' +  data.city + '</td>';
-		row += '<td>' + data.date + '</td>';
-		row += '<td>' + data.temp + '</td>';
-		row += '<td>' + data.windSpeed + '</td>';
-		row += '<td>' + data.humidity + '</td>';
-		row += '<td>' + data.pressure + '</td>';
-		row += '<td><button onclick="confirmDelete(' + data.id +')" class="btn btn-warning" data-toggle="modal" data-target="#confirmModal" >Delete</button></td>';
-		row += '</tr>';
+		card += createCard(data);
 		
 	}
 
-	$("#weatherResultTb tbody").html(row);
+	$("#resultArea").html(card);
+}
+
+function calculateCloud(cloudPercent){
+	return cloudPercent >= 40 ? 'Clouds' : '';
+}
+
+function createCard(data){
+	var cloud = calculateCloud(data.cloud);
+	var card = '<div class="col-sm-12"><div class="card" style="width: 35rem;"><div class="card-body"><div class="row">';
+	card += '<div class="col-sm-2"><img src="' + data.weatherIcon + '" alt="Card image cap"></div>';
+	card += '<div class="col-sm-3">' 
+			+'<p class="text-md-left"><strong>' + data.city + '</strong></p>' 
+			+'<p class="font-weight-light">' + data.date + '</p>' 
+			+'</div>';
+	card += '<div class="col-sm-5">'
+				+ '<p><span class="badge badge-secondary">' + data.temp.toFixed(1) + ' &#8451;</span> ' + cloud + '</p>'
+				+ '<p class="text-sm-left"> ' + data.windSpeed + ' m/s, ' + data.humidity + '%, ' + data.pressure + 'hpa</p>'
+				+ '</div>';
+	card += '<div class="col-sm-2 align-items-center"><button onclick="confirmDelete(' + data.id +')" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal" >Delete</button></div>';
+	card += '</div></div></div></div>';
+	
+	return card;
+	
 }

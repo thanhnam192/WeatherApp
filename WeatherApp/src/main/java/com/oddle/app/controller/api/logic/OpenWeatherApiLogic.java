@@ -66,7 +66,7 @@ public class OpenWeatherApiLogic {
         ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(),
                 CsvPreference.STANDARD_PREFERENCE);
  
-        String[] header = { "id", "city", "country", "date", "temp", "windSpeed", "humidity","pressure","weatherIcon" };
+        String[] header = { "id", "city", "country", "date", "temp", "windSpeed", "humidity","pressure","cloud","weatherIcon" };
  
         csvWriter.writeHeader(header);
  
