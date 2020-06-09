@@ -12,7 +12,7 @@ import com.oddle.app.model.WeatherLog;
 
 @Service
 @Transactional
-public class WeatherLogServiceJpaDaoImp implements WeatherLogService{
+public class WeatherLogServiceDaoImp implements WeatherLogService{
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
 	

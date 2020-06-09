@@ -15,7 +15,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oddle.app.dto.WeatherDto;
-import com.oddle.app.mapper.WeatherLogToDtoMapper;
+import com.oddle.app.mapper.WeatherLogMapper;
 import com.oddle.app.model.WeatherLog;
 import com.oddle.app.model.external.WeatherCity;
 import com.oddle.app.services.WeatherLogService;
@@ -29,7 +29,7 @@ public class OpenWeatherApiLogic {
 	public ObjectMapper mapper;
 	
 	@Autowired
-	private WeatherLogToDtoMapper weatherLogToDtoMapper;
+	private WeatherLogMapper weatherLogMapper;
 	
 	public WeatherLog writeLog(WeatherCity weatherCity) throws JsonProcessingException {
 		WeatherLog log = new WeatherLog();
@@ -48,7 +48,7 @@ public class OpenWeatherApiLogic {
 		List<WeatherLog> logs = (List<WeatherLog>) this.weatherLogService.listAll(city);
 		List<WeatherDto> dtos = new ArrayList<>();
 		for( WeatherLog log : logs ) {
-			dtos.add(this.weatherLogToDtoMapper.toDto(log));
+			dtos.add(this.weatherLogMapper.toDto(log));
 		}
 		
 		

@@ -16,7 +16,7 @@ import com.oddle.app.model.WeatherLog;
 import com.oddle.app.model.external.WeatherCity;
 
 @Component
-public class WeatherLogToDtoMapper {
+public class WeatherLogMapper {
 	
 	@Autowired
 	public ObjectMapper mapper;
