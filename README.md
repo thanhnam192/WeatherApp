@@ -17,7 +17,7 @@
   <li>country, weatherid, timetamps: we should have these columns for further searching criteria</li>
   <li>content: That column used to store all of data that we get from OpenWeather API as JSON. Because respone from API have many object properties and they can change overtime. It really complicated if we store each property object in seperated table. So that we can store all of them as Json Object instead.</li>
    </ul>
-<p>We need to run <b>weather.sql</b> to create databe & table.</p>
+<p>We need to run <b>weather.sql</b> to create database & table.</p>
 
 <h3>Setup required</h3>
 <ul>
