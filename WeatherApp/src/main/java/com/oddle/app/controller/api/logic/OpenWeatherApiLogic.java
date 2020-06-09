@@ -45,7 +45,7 @@ public class OpenWeatherApiLogic {
 	public List<WeatherDto> getAllWeatherCity(String city) throws JsonParseException, JsonMappingException, IOException{
 		if( StringUtils.isEmpty(city) ) return new ArrayList<>();
 		city = city.trim();
-		List<WeatherLog> logs = (List<WeatherLog>) this.weatherLogService.listAll(city);
+		List<WeatherLog> logs = this.weatherLogService.listAll(city);
 		List<WeatherDto> dtos = new ArrayList<>();
 		for( WeatherLog log : logs ) {
 			dtos.add(this.weatherLogMapper.toDto(log));

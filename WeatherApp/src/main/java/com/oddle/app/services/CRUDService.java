@@ -3,7 +3,7 @@ package com.oddle.app.services;
 import java.util.List;
 
 public interface CRUDService<T> {
-    List<?> listAll(String city);
+    List<T> listAll(String city);
 
     T getById(Integer id);
 
