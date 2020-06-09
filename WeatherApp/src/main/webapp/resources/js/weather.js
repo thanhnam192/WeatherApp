@@ -40,10 +40,12 @@ function confirmDelete(id){
 }
 
 function removeLog(){
+	waitingDialog.show('Deleting...', {dialogSize: 'sm'});
 	$.ajax({
 	    url: path + '/api/weather/' + currentWeatherId,
 	    type: 'DELETE',
 	    success: function(result) {
+	    	waitingDialog.hide();
 	    	
 	    	if(showMode){
 	    		removeWeatherLogFromLocal(currentWeatherId);
@@ -53,6 +55,9 @@ function removeLog(){
 	    	}
 	    	
 	    	currentWeatherId = 0;
+	    },
+	    error: function(){
+	    	waitingDialog.hide();
 	    }
 	});
 }
@@ -125,7 +130,7 @@ function createCard(data){
 	var card = '<div class="col-sm-12"><div class="card" style="width: 35rem;"><div class="card-body"><div class="row">';
 	card += '<div class="col-sm-2"><img src="' + data.weatherIcon + '" alt="Card image cap"></div>';
 	card += '<div class="col-sm-3">' 
-			+'<p class="text-md-left">' + data.city + '</p>' 
+			+'<p class="text-md-left"><strong>' + data.city + '</strong></p>' 
 			+'<p class="font-weight-light">' + data.date + '</p>' 
 			+'</div>';
 	card += '<div class="col-sm-5">'
