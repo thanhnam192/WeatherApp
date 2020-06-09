@@ -36,36 +36,16 @@
   		<div class="row mt-1 mb-1">
 			<div class="col-sm">
 				<button id="showMoreBtn" class="btn btn-secondary float-left" onclick="showMoreWeather()">Show More</button>
-			</div>
-			<div class="col-sm">
-				<a href="#"  target="_blank" class="btn btn-primary float-right" id="csvBtn"><i class="fa fa-download"></i></a>
+				<a href="#"  target="_blank" class="btn btn-primary float-left" id="csvBtn" style="margin-left: 10px;"><i class="fa fa-download"></i></a>
 			</div>
 			
 		</div>
   		
 	
-		<div class="result row">
-  				<table id="weatherResultTb" class="table table-striped" >
-  					<thead>
-  						<tr>
-	  						<th scope="col">#</th>
-	 						<th scope="col">City</th>
-						    <th scope="col">Date</th>
-						    <th scope="col">Degree(<span>&#8451;</span>)</th>
-						     <th scope="col">Wind(<span>m/s</span>) </th>
-						     <th scope="col">Humidity(<span>%</span>)</th>
-						     <th scope="col">Pressure(<span>hPa</span>)</th>
-						     <th></th>
-				     	</tr>
-  					</thead>
-  					<tbody>
-  						<tr><td colspan="8">Let do a Search to get current weather</td></tr>
-  					</tbody>
-  				</table>
-  				
+		<div class="result row" id="resultArea">
+			<p><b>Let do a Search to get current weather</b></p>	
 		</div>
-		
-	
+
   	</div>
   	
   	<div class="modal" tabindex="-1" role="dialog" id="confirmModal">
@@ -87,7 +67,8 @@
 	    </div>
 	  </div>
 	</div>
-  	
+	
+
   	
   	<script>
 		var path = '<c:out value="${path}"/>';

@@ -10,6 +10,7 @@ public class WeatherDto {
 	private int humidity;
 	private int pressure;
 	private String weatherIcon;
+	private int cloud;
 	
 	public int getId() {
 		return id;
@@ -66,11 +67,22 @@ public class WeatherDto {
 	public void setWeatherIcon(String weatherIcon) {
 		this.weatherIcon = weatherIcon;
 	}
+	
+	
+	public int getCloud() {
+		return cloud;
+	}
+	public void setCloud(int cloud) {
+		this.cloud = cloud;
+	}
+	
 	@Override
 	public String toString() {
 		return "WeatherDto [id=" + id + ", city=" + city + ", country=" + country + ", date=" + date + ", temp=" + temp
 				+ ", windSpeed=" + windSpeed + ", humidity=" + humidity + ", pressure=" + pressure + ", weatherIcon="
-				+ weatherIcon + "]";
+				+ weatherIcon + ", cloud=" + cloud + "]";
 	}
+
+	
 	
 }

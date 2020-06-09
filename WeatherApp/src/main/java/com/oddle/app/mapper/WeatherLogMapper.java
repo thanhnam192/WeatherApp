@@ -33,6 +33,7 @@ public class WeatherLogMapper {
 		 dto.setHumidity(weatherCity.getMain().getHumidity());
 		 dto.setPressure(weatherCity.getMain().getPressure());
 		 dto.setWeatherIcon("http://openweathermap.org/img/w/"+ weatherCity.getWeather().get(0).getIcon() + ".png");
+		 dto.setCloud(weatherCity.getClouds().getAll());
 		 
 		 return dto;
 	}
