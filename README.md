@@ -83,3 +83,8 @@
     </tr>
   </tbody>
 </table>
+
+<p><b>Edge case</b></p>
+<p>The edge case is the city in response of OpenWeather API is difference with user input. </p>
+<p>For example, User searching weather with value "ho chi minh". OpenWeather can find a data but in their reponse the value of city is "Ho Chi Minh City".</p>
+<p>In that case, on client side. We will update correct city ( Ho Chi Minh City) to local variable. If user click Show More button to get logs. We will use city from local variable to call our API</p>
