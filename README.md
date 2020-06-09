@@ -23,4 +23,63 @@
 <ul>
   <li>Open <b>application.properties</b> and update correct jdbc.url, jdbc.username, jdbc.password </li>
   <li>Run <b>weather.sql</b> to create databe & table.</li>
+  <li>Run mvn clean install</li>
+  <li>Upload war file to tomcat server</li>
 </ul>
+
+<h3>Testing guide</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Steps</th>
+      <th>Expectation</th>
+     </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Do a search with correct city(such as Can Tho)</td>
+      <td>
+        <p>- Current weather will be show in table</p>
+        <p>- Show more button will be showed</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Click on Show More button</td>
+      <td>
+        <p>- Load all weather logs of current city </p>
+        <p>- Each weather row will has delete button </p>
+        <p>- Download button will be showned</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Click on download button</td>
+      <td>
+        <p>Download all logs of current city as csv file</p>
+      </td>
+    </tr>
+     <tr>
+      <td>
+        <p>Click on Delete button</p>
+         <p>Confirm dialog will be showed</p>
+        <p>Click on Yes button</p>
+       </td>
+      <td>
+        <p>Delete selected row</p>
+      </td>
+    </tr>
+         <tr>
+      <td>
+        <p>Click on Delete button</p>
+         <p>Confirm dialog will be showed</p>
+        <p>Click on No button</p>
+       </td>
+      <td>
+        <p>Dialog will be closed</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Search weather with incorrect city</td>
+      <td>Not found message will be showed in table</td>
+    </tr>
+  </tbody>
+</table>
