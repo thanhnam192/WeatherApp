@@ -5,7 +5,7 @@ public class WeatherDto {
 	private String city;
 	private String country;
 	private String date;
-	private int temp;
+	private float temp;
 	private float windSpeed;
 	private int humidity;
 	private int pressure;
@@ -36,10 +36,10 @@ public class WeatherDto {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public int getTemp() {
+	public float getTemp() {
 		return temp;
 	}
-	public void setTemp(int temp) {
+	public void setTemp(float temp) {
 		this.temp = temp;
 	}
 	public float getWindSpeed() {

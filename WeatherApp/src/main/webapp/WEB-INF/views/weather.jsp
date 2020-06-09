@@ -11,13 +11,13 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Weather App</title>
+	<title>Weather Application</title>
  	 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
   </head>
   <body>
   	<nav class="navbar navbar-light bg-light">
 	  <a class="navbar-brand" href="#">
-	    Weather Application
+	    Weather Application - Nam Nguyen
 	  </a>
 	</nav>
 	<br/>
@@ -45,16 +45,16 @@
   		
 	
 		<div class="result row">
-  				<table id="weatherResultTb" class="table table-striped">
+  				<table id="weatherResultTb" class="table table-striped" >
   					<thead>
   						<tr>
 	  						<th scope="col">#</th>
 	 						<th scope="col">City</th>
 						    <th scope="col">Date</th>
-						    <th scope="col">Degree</th>
-						     <th scope="col">Wind Speed</th>
-						     <th scope="col">Humidity</th>
-						     <th scope="col">Pressure</th>
+						    <th scope="col">Degree(<span>&#8451;</span>)</th>
+						     <th scope="col">Wind(<span>m/s</span>) </th>
+						     <th scope="col">Humidity(<span>%</span>)</th>
+						     <th scope="col">Pressure(<span>hPa</span>)</th>
 						     <th></th>
 				     	</tr>
   					</thead>

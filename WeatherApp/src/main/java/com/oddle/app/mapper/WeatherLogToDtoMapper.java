@@ -28,7 +28,7 @@ public class WeatherLogToDtoMapper {
 		 dto.setCity(log.getCity());
 		 dto.setCountry(log.getCountry());
 		 dto.setDate(convertTimetampsToDateString(log.getTimetamps()));
-		 dto.setTemp(weatherCity.getMain().getTemp());
+		 dto.setTemp(convertKelvinToCelius(weatherCity.getMain().getTemp()));
 		 dto.setWindSpeed(weatherCity.getWind().getSpeed());
 		 dto.setHumidity(weatherCity.getMain().getHumidity());
 		 dto.setPressure(weatherCity.getMain().getPressure());
@@ -45,5 +45,8 @@ public class WeatherLogToDtoMapper {
 		return simpleDateFormat.format(date);
 	}
 	
+	private float convertKelvinToCelius(int kelvin) {
+		return (float) (kelvin - 273.15);
+	}
 
 }
