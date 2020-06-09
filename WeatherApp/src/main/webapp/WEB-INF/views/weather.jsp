@@ -59,7 +59,7 @@
 				     	</tr>
   					</thead>
   					<tbody>
-  						<tr><td colspan="8">Have no data</td></tr>
+  						<tr><td colspan="8">Let do a Search to get current weather</td></tr>
   					</tbody>
   				</table>
   				
