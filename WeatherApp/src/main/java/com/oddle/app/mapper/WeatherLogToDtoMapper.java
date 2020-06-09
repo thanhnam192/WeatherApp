@@ -40,7 +40,7 @@ public class WeatherLogToDtoMapper {
 	private String convertTimetampsToDateString(long timetamps) {
 		Timestamp stamp = new Timestamp( timetamps * 1000);
 		Date date = new Date(stamp.getTime());
-		String pattern = "dd MMM yyyy HH:mm:ss";
+		String pattern = "dd MMM yyyy";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		return simpleDateFormat.format(date);
 	}
