@@ -39,16 +39,16 @@
     <tr>
       <td>Do a search with correct city(such as Can Tho)</td>
       <td>
-        <p>- Current weather will be show in table</p>
-        <p>- Show more button will be showed</p>
+        <p>- Current weather will be showed</p>
+        <p>- Show More button will be showed</p>
       </td>
     </tr>
     <tr>
       <td>Click on Show More button</td>
       <td>
         <p>- Load all weather logs of current city </p>
-        <p>- Each weather row will has delete button </p>
-        <p>- Download button will be showned</p>
+        <p>- Each weather will have delete button </p>
+        <p>- Download button will be showed</p>
       </td>
     </tr>
     <tr>
@@ -64,7 +64,7 @@
         <p>Click on Yes button</p>
        </td>
       <td>
-        <p>Delete selected row</p>
+        <p>Delete selected weather</p>
       </td>
     </tr>
          <tr>
@@ -79,7 +79,7 @@
     </tr>
     <tr>
       <td>Search weather with incorrect city</td>
-      <td>Not found message will be showed in table</td>
+      <td>Not found message will be showed</td>
     </tr>
   </tbody>
 </table>
